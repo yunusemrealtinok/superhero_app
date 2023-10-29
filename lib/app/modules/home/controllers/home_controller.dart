@@ -12,17 +12,28 @@ class HomeController extends GetxController {
 
   RxList<HeroModel> heroModelList = <HeroModel>[].obs;
 
-  RxList<bool> isFavorite = <bool>[].obs;
+  RxList<bool> isFavoriteList = <bool>[].obs;
 
   Future<void> searchHeroAndUpdateModel(String heroName) async {
     heroModelList.value = await heroRepository.dioFetchHeroList(heroName);
+    isFavoriteList.clear();
+    for (var element in heroModelList) {
+      bool isFavorite = await checkIsFavorite(element);
+      isFavoriteList.add(isFavorite);
+    }
+  }
+
+  Future<bool> checkIsFavorite(HeroModel heroModel) async {
+    //TODO: handle favorite check
+    return false;
   }
 
   void onTapStar(int index) {
     //TODO handleStarIcon
   }
 
-  void onTapCard(heroModel) {
-    Get.toNamed(Routes.INFO_PAGE, arguments: {'heroModel': heroModel});
+  void onTapCard(int index) {
+    Get.toNamed(Routes.INFO_PAGE,
+        arguments: {'heroModel': heroModelList.value.elementAt(index)});
   }
 }

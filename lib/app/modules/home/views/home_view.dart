@@ -29,17 +29,19 @@ class HomeView extends GetView<HomeController> {
               if (controller.heroModelList.value.isNotEmpty) {
                 return Expanded(
                   child: PageView.builder(
-                    itemCount: controller.heroModelList.value.length,
+                    itemCount: controller.heroModelList.length,
                     itemBuilder: (context, index) {
                       return SuperHeroCard(
                         heroModel:
                             controller.heroModelList.value.elementAt(index),
-                        onTap: controller.onTapCard,
+                        onTap: () {
+                          controller.onTapCard(index);
+                        },
                         onTapStar: () {
                           controller.onTapStar(index);
                         },
                         isFavorite:
-                            controller.isFavorite.value.elementAt(index),
+                            controller.isFavoriteList.value.elementAt(index),
                       );
                     },
                   ),

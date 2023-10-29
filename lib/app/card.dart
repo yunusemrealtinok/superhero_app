@@ -10,17 +10,16 @@ class SuperHeroCard extends StatelessWidget {
     required this.onTapStar,
     required this.isFavorite,
   });
+
   final HeroModel heroModel;
-  final Function(HeroModel) onTap;
+  final Function() onTap;
   final Function() onTapStar;
   final bool isFavorite;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        onTap(heroModel);
-      },
+      onTap: onTap,
       child: Card(
         shadowColor: Colors.blue,
         color: Colors.black12,
