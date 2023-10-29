@@ -10,6 +10,7 @@ class CustomTextField extends StatelessWidget {
       this.focusNode,
       this.hintText,
       required this.onSubmitted});
+
   final TextEditingController? textEditingController;
   final FocusNode? focusNode;
   final String? hintText;
@@ -18,17 +19,22 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.blue.shade50,
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.blue, width: 1.5),
+        borderRadius: BorderRadius.circular(20.0),
+      ),
       child: TextField(
+        style: const TextStyle(color: Colors.white),
         controller: textEditingController,
         onSubmitted: onSubmitted,
         focusNode: focusNode,
         autofocus: false,
         decoration: InputDecoration(
-          prefixIcon: const Icon(Icons.search),
-          border: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(20)),
+          prefixIcon: const Icon(
+            Icons.search,
+            color: Colors.blue,
           ),
+          border: InputBorder.none,
           hintText: hintText,
         ),
       ),

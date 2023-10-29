@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
-import '../../../hero_model.dart';
 import '../controllers/info_page_controller.dart';
 
 class InfoPageView extends GetView<InfoPageController> {
-  const InfoPageView({this.heroModel, Key? key}) : super(key: key);
-  final HeroModel? heroModel;
+  const InfoPageView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Second Page'),
+        backgroundColor: Colors.black12,
+        title: const Text(''),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -20,21 +18,24 @@ class InfoPageView extends GetView<InfoPageController> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             ClipRRect(
-              child: Image.network(
-                heroModel!.image.url,
-                height: 450,
-                width: double.infinity,
-                fit: BoxFit.cover,
+              child: Hero(
+                tag: controller.heroModel.id,
+                child: Image.network(
+                  controller.heroModel.image.url,
+                  height: 450,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-            const SizedBox(height: 16),
+
             Text(
-              'Hero Name: ${heroModel?.name}',
+              'Hero Name: ${controller.heroModel.name}',
               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
             Text(
-              'Real Name: ${heroModel?.biography.fullName}',
+              'Real Name: ${controller.heroModel.biography.fullName}',
               style: const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
@@ -42,7 +43,7 @@ class InfoPageView extends GetView<InfoPageController> {
             ),
             const SizedBox(height: 8),
             Text(
-              'Height: ${heroModel?.appearance.height[1]}',
+              'Height: ${controller.heroModel.appearance.height[1]}',
               style: const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
@@ -50,7 +51,7 @@ class InfoPageView extends GetView<InfoPageController> {
             ),
             const SizedBox(height: 8),
             Text(
-              'Weight: ${heroModel?.appearance.weight[1]}',
+              'Weight: ${controller.heroModel.appearance.weight[1]}',
               style: const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
@@ -58,7 +59,7 @@ class InfoPageView extends GetView<InfoPageController> {
             ),
             const SizedBox(height: 8),
             Text(
-              'Intelligence: ${heroModel?.powerStats.intelligence}',
+              'Intelligence: ${controller.heroModel.powerStats.intelligence}',
               style: const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
@@ -66,7 +67,7 @@ class InfoPageView extends GetView<InfoPageController> {
             ),
             const SizedBox(height: 8),
             Text(
-              'Strength: ${heroModel?.powerStats.strength}',
+              'Strength: ${controller.heroModel.powerStats.strength}',
               style: const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
@@ -74,7 +75,7 @@ class InfoPageView extends GetView<InfoPageController> {
             ),
             const SizedBox(height: 8),
             Text(
-              'Speed: ${heroModel?.powerStats.speed}',
+              'Speed: ${controller.heroModel.powerStats.speed}',
               style: const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
@@ -82,7 +83,7 @@ class InfoPageView extends GetView<InfoPageController> {
             ),
             const SizedBox(height: 8),
             Text(
-              'Durability: ${heroModel?.powerStats.durability}',
+              'Durability: ${controller.heroModel.powerStats.durability}',
               style: const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
@@ -90,7 +91,7 @@ class InfoPageView extends GetView<InfoPageController> {
             ),
             const SizedBox(height: 8),
             Text(
-              'Power: ${heroModel?.powerStats.power}',
+              'Power: ${controller.heroModel.powerStats.power}',
               style: const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
@@ -98,7 +99,7 @@ class InfoPageView extends GetView<InfoPageController> {
             ),
             const SizedBox(height: 8),
             Text(
-              'Combat: ${heroModel?.powerStats.combat}',
+              'Combat: ${controller.heroModel.powerStats.combat}',
               style: const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
@@ -106,7 +107,7 @@ class InfoPageView extends GetView<InfoPageController> {
             ),
             const SizedBox(height: 8),
             Text(
-              'Gender: ${heroModel?.appearance.gender}',
+              'Gender: ${controller.heroModel.appearance.gender}',
               style: const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
@@ -114,7 +115,7 @@ class InfoPageView extends GetView<InfoPageController> {
             ),
             const SizedBox(height: 8),
             Text(
-              'Race: ${heroModel?.appearance.race}',
+              'Race: ${controller.heroModel.appearance.race}',
               style: const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
