@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:superhero_app/app/data/hero_repository.dart';
+import 'package:superhero_app/app/managers/hive_manager.dart';
 
 import '../../../hero_model.dart';
 import '../../../routes/app_pages.dart';
@@ -28,8 +29,11 @@ class HomeController extends GetxController {
     return false;
   }
 
-  void onTapStar(int index) {
-    //TODO handleStarIcon
+  Future<void> onTapStar(int index) async {
+    //not enough code just example
+    await HiveManager.instance.addFavorite(heroModelList.elementAt(index));
+
+    //TODO add corresponding logic
   }
 
   void onTapCard(int index) {
