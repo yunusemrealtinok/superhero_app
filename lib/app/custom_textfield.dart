@@ -2,6 +2,7 @@
 //reuseable
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField(
@@ -20,7 +21,7 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.blue, width: 1.5),
+        border: Border.all(color: Colors.blue, width: 1.5.w),
         borderRadius: BorderRadius.circular(20.0),
       ),
       child: TextField(

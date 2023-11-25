@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'hero_model.dart';
 
@@ -44,14 +45,14 @@ class SuperHeroCard extends StatelessWidget {
                 child: Image.network(
                   alignment: Alignment.bottomCenter,
                   heroModel.image.url,
-                  height: 450,
+                  height: 450.h,
                   width: double.infinity,
                   fit: BoxFit.cover,
                 ),
               ),
             ),
-            const SizedBox(
-              height: 20,
+            SizedBox(
+              height: 20.h,
             ),
             Text(
               'Name: ${heroModel.name}',
@@ -60,7 +61,7 @@ class SuperHeroCard extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: 8.h),
             Text(
               'Real Name: ${heroModel.biography.fullName}',
               style: const TextStyle(
@@ -69,7 +70,7 @@ class SuperHeroCard extends StatelessWidget {
                 color: Colors.blue,
               ),
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: 8.h),
             Text(
               'Height: ${heroModel.appearance.height[1]}',
               style: const TextStyle(
@@ -78,7 +79,7 @@ class SuperHeroCard extends StatelessWidget {
                 color: Colors.blue,
               ),
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: 8.h),
             Text(
               'Weight: ${heroModel.appearance.weight[1]}',
               style: const TextStyle(
@@ -87,8 +88,8 @@ class SuperHeroCard extends StatelessWidget {
                 color: Colors.blue,
               ),
             ),
-            const SizedBox(
-              height: 10,
+            SizedBox(
+              height: 10.h,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40),

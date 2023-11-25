@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:superhero_app/app/data/hero_repository.dart';
 import 'package:superhero_app/app/managers/hive_manager.dart';
+import 'package:superhero_app/app/modules/favorites/controllers/favorites_controller.dart';
 
 import '../../../hero_model.dart';
 import '../../../routes/app_pages.dart';
@@ -15,6 +16,8 @@ class HomeController extends GetxController {
 
   RxList<bool> isFavoriteList = <bool>[].obs;
 
+  RxBool refreshed = false.obs;
+
   Future<void> searchHeroAndUpdateModel(String heroName) async {
     heroModelList.value = await heroRepository.dioFetchHeroList(heroName);
     isFavoriteList.clear();
@@ -25,15 +28,30 @@ class HomeController extends GetxController {
   }
 
   Future<bool> checkIsFavorite(HeroModel heroModel) async {
-    //TODO: handle favorite check
-    return false;
+    return HiveManager.instance.getFavorites.contains(heroModel);
   }
 
   Future<void> onTapStar(int index) async {
-    //not enough code just example
-    await HiveManager.instance.addFavorite(heroModelList.elementAt(index));
-
+    final a = Get.put(FavoritesController());
+    refreshed.value = true;
+    if (isFavoriteList[index] == false) {
+      await HiveManager.instance.addFavorite(heroModelList.elementAt(index));
+      isFavoriteList[index] = true;
+    } else {
+      await HiveManager.instance.deleteFavorite(heroModelList.elementAt(index));
+      isFavoriteList[index] = false;
+    }
+    refreshed.value = false;
+    a.updateHeroes();
     //TODO add corresponding logic
+  }
+
+  Future<void> updateFavorites() async {
+    isFavoriteList.clear();
+    for (var element in heroModelList) {
+      bool isFavorite = await checkIsFavorite(element);
+      isFavoriteList.add(isFavorite);
+    }
   }
 
   void onTapCard(int index) {

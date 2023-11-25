@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 import 'package:superhero_app/app/modules/home/views/home_view.dart';
@@ -15,7 +16,7 @@ class TabbarView extends GetView<TabbarController> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          toolbarHeight: 6,
+          toolbarHeight: 6.h,
           bottom: const TabBar(
             tabs: [
               Tab(
